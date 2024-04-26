@@ -16,21 +16,39 @@ a=PyQt5.QtWidgets.QApplication([])
 i=PyQt5.QtWidgets.QSystemTrayIcon()
 text=q=PyQt5.QtWidgets.QAction()
 
-def update(hourp=None):
-  n=datetime.datetime.now()
-  h=hourp if hourp!=None else n.hour
-  m=n.minute
-  i.setIcon(PyQt5.QtGui.QIcon(f"icons/{h}.png"))
-  p=Period.get(h)
+def describe(hours):
+  return '1 hour' if hours==1 else f'{hours} hours'
+
+def measure(hour):
+  p=Period.get(hour)
+  n=p.name.lower()
+  if hour==p.hour:
+    return p.name
+  if hour-p.hour<3:
+    return f'{describe(hour-p.hour)} past {n}'
+  if hour-3==p.hour:
+    return f'Mid-{n}'
   later=Period.get(p.hour+6)
   laterhour=later.hour
   if laterhour==0:
     laterhour=24
-  tooltip=f'{h-p.hour} hours past {p.name}'if h-p.hour<3 else f'{laterhour-h} hours to {later.name}'
-  tooltip=f'{tooltip.lower()}, {h}:{m:02}'
+  return f'{describe(laterhour-hour)} to {later.name.lower()}'
+  
+def update():
+  n=datetime.datetime.now()
+  h=n.hour
+  i.setIcon(PyQt5.QtGui.QIcon(f"icons/{h}.png"))
+  tooltip=f'{measure(h)}, {h}:{n.minute:02}'
   print(h,tooltip)
   i.setToolTip(tooltip)
   text.setText(tooltip)
+  
+def test():
+  print()
+  for hour in range(0,24):
+    print(hour,measure(hour))
+  print()
+
 
 a.setQuitOnLastWindowClosed(False) 
 m=PyQt5.QtWidgets.QMenu() 
@@ -46,7 +64,6 @@ t.timeout.connect(update)
 t.setInterval(60*1000)
 t.start()
 
-for hour in range(0,24):
-  update(hour)
+test()
 
 a.exec() 
