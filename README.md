@@ -9,7 +9,7 @@ It's a simpler way to organize the passing of the day in accordance to natural t
 ## Installation
 
 1. Install Python (https://www.python.org/downloads/).
-1. Download and extract the package (https://github.com/tukkek/sun-clock/releases).
+1. Download and extract the package (https://github.com/tukkek/sun-clock/archive/refs/heads/main.zip).
 3. In the extracted directory, run: `pip install -r requirements.txt`.
 4. Test the installation by running the `clock.py` script.
 
