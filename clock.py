@@ -1,5 +1,5 @@
-#!./venv/bin/python3
-import PyQt5.QtGui,PyQt5.QtWidgets,datetime,PyQt5.QtCore,dataclasses
+#!/usr/bin/python3
+import PyQt5.QtGui,PyQt5.QtWidgets,datetime,PyQt5.QtCore,dataclasses,sys
 
 @dataclasses.dataclass
 class Period:
@@ -35,21 +35,14 @@ def measure(hour):
   return f'{describe(laterhour-hour)} to {later.name.lower()}'
   
 def update():
+  path='/'.join(sys.argv[0].split('/')[:-1])
   n=datetime.datetime.now()
   h=n.hour
-  i.setIcon(PyQt5.QtGui.QIcon(f"icons/{h}.png"))
+  i.setIcon(PyQt5.QtGui.QIcon(f"{path}/icons/{h}.png"))
   tooltip=f'{measure(h)}, {h}:{n.minute:02}'
-  print(h,tooltip)
   i.setToolTip(tooltip)
   text.setText(tooltip)
   
-def test():
-  print()
-  for hour in range(0,24):
-    print(hour,measure(hour))
-  print()
-
-
 a.setQuitOnLastWindowClosed(False) 
 m=PyQt5.QtWidgets.QMenu() 
 m.addAction(text) 
@@ -63,7 +56,4 @@ t=PyQt5.QtCore.QTimer()
 t.timeout.connect(update)
 t.setInterval(60*1000)
 t.start()
-
-test()
-
 a.exec() 
