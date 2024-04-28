@@ -27,7 +27,7 @@ def measure(hour):
   if hour-p.hour<3:
     return f'{describe(hour-p.hour)} past {n}'
   if hour-3==p.hour:
-    return f'Mid-{n}'
+    return f'Late {n}'
   later=Period.get(p.hour+6)
   laterhour=later.hour
   if laterhour==0:
