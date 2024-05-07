@@ -64,6 +64,7 @@ def update():
   
 a.setQuitOnLastWindowClosed(False) 
 m=PyQt5.QtWidgets.QMenu()
+i.activated.connect(lambda:m.popup(PyQt5.QtGui.QCursor.pos()))
 m.addAction(text)
 m.addAction(date)
 date.triggered.connect(lambda:webbrowser.open('https://www.timeanddate.com/calendar/'))
