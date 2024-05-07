@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import PyQt5.QtGui,PyQt5.QtWidgets,datetime,PyQt5.QtCore,dataclasses,sys
+import PyQt5.QtGui,PyQt5.QtWidgets,datetime,PyQt5.QtCore,dataclasses,sys,webbrowser
 
 @dataclasses.dataclass
 class Period:
@@ -15,6 +15,7 @@ periods=[Period('Night',0),Period('Morning',6),Period('Afternoon',12),Period('Ev
 a=PyQt5.QtWidgets.QApplication([])
 i=PyQt5.QtWidgets.QSystemTrayIcon()
 text=q=PyQt5.QtWidgets.QAction()
+date=q=PyQt5.QtWidgets.QAction()
 
 def describe(hours):
   return '1 hour' if hours==1 else f'{hours} hours'
@@ -39,13 +40,17 @@ def update():
   n=datetime.datetime.now()
   h=n.hour
   i.setIcon(PyQt5.QtGui.QIcon(f"{path}/icons/{h}.png"))
-  tooltip=f'{measure(h)}, {h}:{n.minute:02}'
+  tooltip=f'{measure(h)} ({h}:{n.minute:02})'
   i.setToolTip(tooltip)
   text.setText(tooltip)
+  d=n.date()
+  date.setText(f'{d.strftime("%A")}, {d.isoformat()}')
   
 a.setQuitOnLastWindowClosed(False) 
-m=PyQt5.QtWidgets.QMenu() 
-m.addAction(text) 
+m=PyQt5.QtWidgets.QMenu()
+m.addAction(text)
+m.addAction(date)
+m.triggered.connect(lambda:webbrowser.open('https://www.timeanddate.com/calendar/'))
 q=PyQt5.QtWidgets.QAction("Quit") 
 q.triggered.connect(a.quit) 
 m.addAction(q) 
