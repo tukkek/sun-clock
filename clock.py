@@ -52,9 +52,11 @@ class Tray(simple_tray.tray.Tray):
     n=datetime.datetime.now()
     h=n.hour
     self.icon.setIcon(PyQt5.QtGui.QIcon(str(pathlib.Path(__file__).parents[0]/f'icons/{h}.png')))
-    tooltip=f'{measure(n)} ({h}:{n.minute:02})'
-    self.say(tooltip)
-    self.text.setText(tooltip)
+    m=measure(n)
+    self.say(m)
+    m+=f' ({h}:{n.minute:02})'
+    self.text.setText(m)
+    self.icon.setToolTip(m)
     d=n.date()
     self.date.setText(f'{d.strftime("%A")}, {d.isoformat()}')
   
