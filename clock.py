@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import datetime,dataclasses,webbrowser,math,simple_tray.tray,PyQt5.QtWidgets,PyQt5.QtGui
+import datetime,dataclasses,webbrowser,math,simple_tray.tray,PyQt5.QtWidgets,PyQt5.QtGui,pathlib
 
 MINUTE=60
 HOUR=MINUTE*60
@@ -49,10 +49,9 @@ def measure(now):
 
 class Tray(simple_tray.tray.Tray):
   def update(self):
-    #path='/'.join(sys.argv[0].split('/')[:-1])
     n=datetime.datetime.now()
     h=n.hour
-    self.icon.setIcon(PyQt5.QtGui.QIcon(f"icons/{h}.png"))
+    self.icon.setIcon(PyQt5.QtGui.QIcon(str(pathlib.Path(__file__).parents[0]/f'icons/{h}.png')))
     tooltip=f'{measure(n)} ({h}:{n.minute:02})'
     self.say(tooltip)
     self.text.setText(tooltip)
