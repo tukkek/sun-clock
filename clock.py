@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import datetime,dataclasses,webbrowser,math,simple_tray.tray,PyQt5.QtWidgets,PyQt5.QtGui,pathlib
+import datetime,dataclasses,webbrowser,math,simple_tray.tray,PyQt6.QtGui,pathlib
 
 MINUTE=60
 HOUR=MINUTE*60
@@ -51,7 +51,7 @@ class Tray(simple_tray.tray.Tray):
   def update(self):
     n=datetime.datetime.now()
     h=n.hour
-    self.icon.setIcon(PyQt5.QtGui.QIcon(str(pathlib.Path(__file__).parents[0]/f'icons/{h}.png')))
+    self.icon.setIcon(PyQt6.QtGui.QIcon(str(pathlib.Path(__file__).parents[0]/f'icons/{h}.png')))
     m=measure(n)
     self.say(m)
     m+=f' ({h}:{n.minute:02})'
@@ -61,9 +61,9 @@ class Tray(simple_tray.tray.Tray):
     self.date.setText(f'{d.strftime("%A")}, {d.isoformat()}')
   
 t=Tray('Sun-clock','',60)
-t.text=q=PyQt5.QtWidgets.QAction()
+t.text=q=PyQt6.QtGui.QAction()
 t.menu.addAction(t.text)
-t.date=q=PyQt5.QtWidgets.QAction()
+t.date=q=PyQt6.QtGui.QAction()
 t.date.triggered.connect(lambda:webbrowser.open('https://www.timeanddate.com/calendar/'))
 t.menu.addAction(t.date)
 t.start()
