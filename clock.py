@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!.venv/bin/python
 import datetime,dataclasses,webbrowser,math,simple_tray.tray,PyQt6.QtGui,pathlib
 
 MINUTE=60
