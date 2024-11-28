@@ -8,9 +8,6 @@ It's a simpler way to organize the passing of the day in accordance to natural t
 
 ## Installation
 
-
-## Install
-
 Execute the following commands:
 
 ```
