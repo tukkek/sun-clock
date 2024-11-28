@@ -8,9 +8,16 @@ It's a simpler way to organize the passing of the day in accordance to natural t
 
 ## Installation
 
-1. Install Python (https://www.python.org/downloads/).
-1. Download and extract the package (https://github.com/tukkek/sun-clock/archive/refs/heads/main.zip).
-3. In the extracted directory, run: `pip install -r requirements.txt`.
-4. Test the installation by running the `clock.py` script.
 
-You can optionally configure Sun Clock to start automatically (consult your operating-system documentation) and also remove your system clock if you don't want two clocks running at the same time.
+## Install
+
+Execute the following commands:
+
+```
+git clone --recurse-submodules https://github.com/tukkek/sun-clock
+cd sun-clock/
+python3 -m venv .venv/
+.venv/bin/pip install -r requirements.txt
+```
+
+You can optionally configure Sun Clock to start automatically (consult your operating-system documentation) and also remove your system clock if you don't want two clocks running at the same time. For this purpose: you can use a command like: `/path/to/sun-clock/.venv/bin/python /path/to/sun-clock/clock.py`.
