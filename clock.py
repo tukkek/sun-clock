@@ -16,7 +16,7 @@ class Period:
       hour+=24
     return next(p for p in periods if hour<p.hour+6)
   
-periods=[Period('Night',0),Period('Morning',6),Period('Afternoon',12),Period('Evening',18)]  
+periods=[Period('Night',0),Period('Morning',6),Period('Day',12),Period('Evening',18)]
 
 def describe(hours):
   return '1 hour' if hours==1 else f'{hours} hours'
