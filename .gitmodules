@@ -1,4 +1,0 @@
-[submodule "simple_tray"]
-  path = simple_tray
-  url = https://github.com/tukkek/simple_tray/
-  ignore = untracked
