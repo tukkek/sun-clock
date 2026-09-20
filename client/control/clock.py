@@ -1,5 +1,5 @@
 import tray.tray as traym
-import os,PyQt6,datetime,webbrowser
+import os,PyQt6,datetime,webbrowser,calendar
 import season as seasonm
 import period as periodm
 import moon as moonm
@@ -20,12 +20,21 @@ class Tray(traym.Tray):
     season=seasonm.get()
     month=moonm.track(season.datetime)
     self.season.setText(f'{month} {season.name.lower()}')
-    self.gregorian.setText(f'{now:%Y-%m-%d %H:%M}')
+    gregorian=self.gregorian
+    gregorian[2].setText(f'{now:%Y-%m-%d}')
+    gregorian[1].setText(calendar.day_name[now.weekday()])
+    gregorian[0].setText(f'{now:%H:%M}')
 
 tray=Tray('Sun-Clock','icons/night.png',TICK)
 tray.week=tray.act('Week')
 tray.season=tray.act('Season')
-gregorian=tray.act('Gregorian')
+tray.separate()
+gregorian=[
+  tray.act('Time'),
+  tray.act('Day'),
+  tray.act('Date'),
+]
+gregorian[2].triggered.connect(lambda:webbrowser.open(CALENDAR))
 tray.gregorian=gregorian
-gregorian.triggered.connect(lambda:webbrowser.open(CALENDAR))
+tray.separate()
 tray.start()
