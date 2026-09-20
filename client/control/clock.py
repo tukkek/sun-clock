@@ -1,5 +1,5 @@
 import tray.tray as traym
-import os,PyQt6,datetime
+import os,PyQt6,datetime,season
 import period as periodm
 
 DEBUG=False
@@ -12,6 +12,9 @@ class Tray(traym.Tray):
     period=periodm.get(hour)
     path=f'icons/{period.lower().replace(' ','-')}.png'
     self.icon.setIcon(PyQt6.QtGui.QIcon(path))
-    self.say(period)
+    self.say(f'{period}.')
+    self.season.setText(season.get())
 
-Tray('Sun-Clock','icons/night.png',TICK).start()
+tray=Tray('Sun-Clock','icons/night.png',TICK)
+tray.season=tray.act('Season')
+tray.start()
