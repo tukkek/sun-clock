@@ -36,3 +36,6 @@ python3 -m venv .venv/
 ~~~
 
 Next configure your system to run `launch.sh` from its folder when starting.
+
+# Configuring
+`flags.json` accepts *north* and *south* as *hemisphere*. This only affects seasons-names.

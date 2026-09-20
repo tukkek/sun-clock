@@ -1,5 +1,5 @@
 import tray.tray as traym
-import os,PyQt6,datetime,webbrowser,calendar
+import PyQt6,datetime,webbrowser,calendar
 import season as seasonm
 import period as periodm
 import moon as moonm
@@ -14,7 +14,7 @@ class Tray(traym.Tray):
     now=datetime.datetime.now()
     period=periodm.get(now.hour)
     self.say(f'{period}.')
-    path=f'icons/{period.lower().replace(' ','-')}.png'
+    path=f'icons/{period.lower().replace(" ","-")}.png'
     self.icon.setIcon(PyQt6.QtGui.QIcon(path))
     self.week.setText(moonm.get())
     season=seasonm.get()

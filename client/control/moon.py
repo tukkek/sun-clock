@@ -10,10 +10,10 @@ class Phase:
     self.day=day
 
 phases=[
-  Phase('🌕',0),
-  Phase('🌗',7),
-  Phase('🌑',14),
-  Phase('🌓',21),
+  Phase('○', 0),    
+  Phase('☽', 7),    
+  Phase('●', 14),   
+  Phase('☾', 21),
 ]
 
 def watch(now=False):

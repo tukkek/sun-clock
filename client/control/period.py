@@ -9,4 +9,4 @@ def get(hourp):
   for hour in PERIODS:
     if hourp>=hour:
       return PERIODS[hour]
-  raise Exception(f'No know period for {hourp}')
+  raise Exception(f'No known period for {hourp}')

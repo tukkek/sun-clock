@@ -24,6 +24,7 @@ def get():
     if now>=season.datetime:
       current=season
       break
-  if not NORTH:
-    current=seasons[(seasons.index(current)+2)%4]
-  return current
+  if NORTH:
+    return current
+  season=seasons[(seasons.index(current)+2)%4]
+  return Season(season.name,current.datetime)
