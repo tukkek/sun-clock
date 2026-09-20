@@ -8,7 +8,7 @@ A system-clock fully aligned with the Sun and Moon. It shows:
 Notifications are issued each 2 hours as the day-period changes. For example as early morning turns to morning then late morning.
 
 # Rationale
-It is impossible to track the Sun and Moon as independent bedies in a single system so lunisolar calendars ultimately settle for one.
+It is impossible to track the Sun and Moon as independent bodies in a single system so lunisolar calendars ultimately settle for one.
 
 For example the word *month* is derived from the *Moon* and its cycle but the gregorian week does not really align with its phases.
 
@@ -29,8 +29,8 @@ The week-day is based on the Moon and it starts roughly an hour later each day.
 You will need Git and Python (`apt-get install git python3`).
 
 ~~~sh
-git clone --recursive https://github.com/tukkek/sun-clock
-cd sun-clock/
+git clone --recursive https://github.com/tukkek/solar-clock
+cd solar-clock/
 python3 -m venv .venv/
 .venv/bin/pip install --requirement requirements.txt
 ~~~
