@@ -1,5 +1,6 @@
 import tray.tray as traym
-import os,PyQt6,datetime,season,webbrowser
+import os,PyQt6,datetime,webbrowser
+import season as seasonm
 import period as periodm
 import moon as moonm
 
@@ -16,7 +17,9 @@ class Tray(traym.Tray):
     path=f'icons/{period.lower().replace(' ','-')}.png'
     self.icon.setIcon(PyQt6.QtGui.QIcon(path))
     self.week.setText(moonm.get())
-    self.season.setText(season.get())
+    season=seasonm.get()
+    month=moonm.track(season.datetime)
+    self.season.setText(f'{month} {season.name.lower()}')
     self.gregorian.setText(f'{now:%Y-%m-%d %H:%M}')
 
 tray=Tray('Sun-Clock','icons/night.png',TICK)
