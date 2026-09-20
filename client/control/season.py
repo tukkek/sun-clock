@@ -1,11 +1,15 @@
 import datetime as datetimem
+import json,pathlib
+
+JSON=json.loads(pathlib.Path('flags.json').read_text())
+NORTH=JSON['hemisphere'].lower()=='north'
 
 class Season:
   def __init__(self,name,datetime):
     self.name=name
     self.datetime=datetime
 
-def get(north=True):
+def get():
   now=datetimem.datetime.now()
   year=now.year
   seasons=[
@@ -20,6 +24,6 @@ def get(north=True):
     if now>=season.datetime:
       current=season
       break
-  if not north:
+  if not NORTH:
     current=seasons[(seasons.index(current)+2)%4]
   return current
